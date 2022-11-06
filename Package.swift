@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -19,9 +19,9 @@ let package = Package(
         .executable(name: "WebhooksLocally", targets: ["DemoWebhooksLocally"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.2.0"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0"),
         .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.1.0"),
-        .package(url: "https://github.com/apple/swift-nio.git", from: "2.18.0")
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.44.0")
     ],
     targets: [
         .target(
@@ -41,11 +41,12 @@ let package = Package(
                 .target(name: "TelegrammerCMultipartParser")
             ]
         ),
-        .target(name: "DemoEchoBot", dependencies: ["Telegrammer"]),
-        .target(name: "DemoHelloBot", dependencies: ["Telegrammer"]),
-        .target(name: "DemoSchedulerBot", dependencies: ["Telegrammer"]),
-        .target(name: "DemoSpellCheckerBot", dependencies: ["Telegrammer"]),
-        .target(name: "DemoWebhooksLocally", dependencies: ["Telegrammer"]),
+        .executableTarget(name: "DemoEchoBot", dependencies: ["Telegrammer"]),
+        .executableTarget(name: "DemoHelloBot", dependencies: ["Telegrammer"]),
+        .executableTarget(name: "DemoSchedulerBot", dependencies: ["Telegrammer"]),
+        .executableTarget(name: "DemoSpellCheckerBot", dependencies: ["Telegrammer"]),
+        .executableTarget(name: "DemoWebhooksLocally", dependencies: ["Telegrammer"]),
+        
         .testTarget(name: "TelegrammerTests", dependencies: ["Telegrammer"]),
         .testTarget(name: "TelegrammerMultipartTests", dependencies: ["TelegrammerCMultipartParser"])
     ]
